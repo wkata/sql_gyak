@@ -1,0 +1,8 @@
+CREATE USER Proba WITHOUT Login
+GRANT SELECT ON staffs TO Proba
+
+EXECUTE AS USER = 'Proba'
+SELECT * FROM staffs
+
+REVERT
+SELECT * FROM staffs
