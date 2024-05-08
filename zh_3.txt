@@ -1,0 +1,23 @@
+ 1. feladat
+ Filter:  {"genres.0" : "Short" , "year": {$gte: 1945} , "year" :{$lte: 1970}}
+ Project: {title: 1, year:1, _id:0}
+ Sort:    {"year": 1, "title": 1 }
+
+2. feladat
+ db.users.find({"email": {$regex: /.com/}},{"name":1, "email":1, "_id":0})
+
+3. feladat
+ db.movies.aggregate([{$match: { "year": {$gt:1950}}},{$group:{_id:"$rated", atlag: {$avg: "$runtime"}}}])
+
+4. feladat
+ match(p:Person)-[:ACTED_IN]->(m:Movie)
+ where m.released >1960
+ return p.name as Nev, m.title as Cim, m.released as Ev
+ order by Ev desc
+
+5.feladat
+ match(p:Person)-[:DIRECTED]->(m:Movie)
+ where m.released<2000
+ with p, count(*) as db
+ where db>1
+ return p.name,db
